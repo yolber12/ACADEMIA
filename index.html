@@ -1,0 +1,255 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  ShieldCheck, Wrench, Award, Zap, CheckCircle, 
+  MessageCircle, ChevronRight, Users, Calendar, 
+  GraduationCap, Briefcase, Star, PenTool, DollarSign
+} from 'lucide-react';
+
+const App = () => {
+  const [brandName] = useState("Aliado Comercial");
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-neutral-950 text-white font-sans selection:bg-green-500/30 pb-20 relative overflow-hidden">
+      
+      {/* Nueva Capa de Fondo: Grid Técnico y Gradiente de Seguimiento */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        {/* Cuadrícula (Grid) sutil */}
+        <div 
+          className="absolute inset-0 opacity-[0.03]" 
+          style={{ 
+            backgroundImage: `linear-gradient(#22c55e 1px, transparent 1px), linear-gradient(90deg, #22c55e 1px, transparent 1px)`,
+            backgroundSize: '40px 40px' 
+          }}
+        ></div>
+
+        {/* Efecto de "Linterna" que sigue al mouse */}
+        <div 
+          className="absolute inset-0 transition-opacity duration-500"
+          style={{
+            background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(34, 197, 94, 0.07), transparent 40%)`
+          }}
+        ></div>
+
+        {/* Línea de escaneo horizontal sutil */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-green-500/10 to-transparent animate-[scan_8s_ease-in-out_infinite] top-0 absolute"></div>
+        </div>
+      </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes scan {
+          0% { transform: translateY(0vh); }
+          100% { transform: translateY(100vh); }
+        }
+      `}} />
+
+      <div className="relative z-10">
+        {/* Hero Section */}
+        <header className="relative py-24 px-6 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-green-600/10 to-transparent"></div>
+          <div className="max-w-6xl mx-auto relative z-10 text-center">
+            <div className="inline-flex items-center gap-2 bg-green-600/20 px-4 py-2 rounded-full mb-6 border border-green-600/30">
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+              <span className="text-green-500 text-sm font-bold uppercase tracking-widest">Alianza Exclusiva 2026</span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-neutral-500 leading-tight uppercase tracking-tighter">
+              Propuesta comercial
+            </h1>
+            <p className="text-xl text-neutral-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+              Un semestre de formación intensiva para <span className="text-white font-semibold">Técnicos Medios</span> donde <span className="text-white font-semibold">{brandName}</span> se convierte en el estándar de calidad dentro del taller.
+            </p>
+          </div>
+        </header>
+
+        {/* Detalles del Programa */}
+        <section className="py-12 bg-neutral-900/40 border-y border-neutral-800 backdrop-blur-sm">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-8">
+              <h2 className="text-lg font-bold text-green-500 uppercase tracking-[0.2em]">Detalles del proyecto (Academia)</h2>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <div className="flex items-center gap-4 group">
+                <Calendar className="text-green-500" size={28} />
+                <div>
+                  <p className="text-xs text-neutral-500 uppercase font-bold tracking-widest">Duración</p>
+                  <p className="font-bold">6 Meses</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 group">
+                <GraduationCap className="text-green-500" size={28} />
+                <div>
+                  <p className="text-xs text-neutral-500 uppercase font-bold tracking-widest">Certificación</p>
+                  <p className="font-bold">Técnico Medio</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 group">
+                <Briefcase className="text-green-500" size={28} />
+                <div>
+                  <p className="text-xs text-neutral-500 uppercase font-bold tracking-widest">Nicho</p>
+                  <p className="font-bold">Profesional</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 group">
+                <Star className="text-green-500" size={28} />
+                <div>
+                  <p className="text-xs text-neutral-500 uppercase font-bold tracking-widest">Efecto</p>
+                  <p className="font-bold">Lealtad</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Modelo de Integración Técnica */}
+        <section className="py-24 px-6 relative">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl font-bold mb-16 text-center italic uppercase tracking-tighter">Estrategia de <span className="text-green-500">Integración Orgánica</span></h2>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-neutral-900/50 p-8 rounded-[2.5rem] border border-neutral-800 hover:border-green-500/30 transition-all group backdrop-blur-md">
+                <div className="w-14 h-14 bg-green-600/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-green-600/20 transition-colors">
+                  <Wrench className="text-green-500" size={30} />
+                </div>
+                <h3 className="text-xl font-bold mb-4 italic text-green-500 uppercase">01. Product Placement</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed mb-4">
+                  La marca se integra en el flujo de trabajo real, convirtiéndose en la herramienta cotidiana del técnico.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex gap-2 text-xs text-neutral-300">
+                    <CheckCircle size={14} className="text-green-500 shrink-0" />
+                    <span><b>Uso Oficial:</b> Herramienta exclusiva en desarmes críticos.</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-neutral-900/50 p-8 rounded-[2.5rem] border border-neutral-800 hover:border-green-500/30 transition-all group scale-105 shadow-2xl shadow-green-500/5 backdrop-blur-md">
+                <div className="w-14 h-14 bg-green-600/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-green-600/20 transition-colors">
+                  <Zap className="text-green-500" size={30} />
+                </div>
+                <h3 className="text-xl font-bold mb-4 italic text-green-500 uppercase">02. Recomendación Técnica</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed mb-4">
+                  Jorge actúa como el validador experto, educando sobre las ventajas de usar su marca ante los alumnos.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex gap-2 text-xs text-neutral-300">
+                    <CheckCircle size={14} className="text-green-500 shrink-0" />
+                    <span><b>Validación:</b> Recomendación directa del instructor en vivo.</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-neutral-900/50 p-8 rounded-[2.5rem] border border-neutral-800 hover:border-green-500/30 transition-all group backdrop-blur-md">
+                <div className="w-14 h-14 bg-green-600/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-green-600/20 transition-colors">
+                  <PenTool className="text-green-500" size={30} />
+                </div>
+                <h3 className="text-xl font-bold mb-4 italic text-green-500 uppercase">03. Branding Constante</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed mb-4">
+                  Presencia visual en cada pieza de contenido y durante cada jornada de trabajo práctico.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex gap-2 text-xs text-neutral-300">
+                    <CheckCircle size={14} className="text-green-500 shrink-0" />
+                    <span><b>Identidad:</b> Logos en uniforme y entorno de taller.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Plan Único de Inversión */}
+        <section id="planes" className="py-24 bg-neutral-900/20 backdrop-blur-sm">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <div className="mb-12 uppercase tracking-tighter">
+              <h2 className="text-4xl font-bold mb-4">Plan Único de Patrocinio</h2>
+              <p className="text-neutral-500 uppercase text-xs tracking-[0.3em]">Inversión Semestral Integral</p>
+            </div>
+
+            <div className="relative p-12 rounded-[3rem] bg-neutral-950/80 border-2 border-green-500/50 flex flex-col shadow-2xl shadow-green-500/10 text-left overflow-hidden backdrop-blur-md">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-green-600/5 rounded-full blur-3xl -mr-16 -mt-16"></div>
+              
+              <div className="grid md:grid-cols-2 gap-12 items-center relative z-10">
+                <div>
+                  <div className="bg-green-600 text-xs font-black px-8 py-2 rounded-full text-white uppercase tracking-[0.2em] mb-6 inline-block">
+                    Socio Formador Exclusivo
+                  </div>
+                  <h3 className="text-3xl font-bold mb-6 italic leading-tight">Programa Integral de Acompañamiento</h3>
+                  
+                  <div className="bg-green-600/10 border border-green-500/20 p-6 rounded-2xl mb-8">
+                    <p className="text-xs text-green-500 uppercase font-bold mb-1 tracking-widest">Costo del Plan</p>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-4xl font-black text-white">USD 1.500,00</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3 text-green-500 font-bold italic">
+                      <ShieldCheck size={20} />
+                      <span>Exclusividad de Categoría</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-green-500 font-bold italic">
+                      <ShieldCheck size={20} />
+                      <span>Presencia en Certificación Final</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4 bg-neutral-900/50 p-8 rounded-2xl border border-neutral-800 backdrop-blur-sm">
+                  <p className="text-xs text-neutral-500 uppercase tracking-widest mb-4 font-bold">Incluye:</p>
+                  {[
+                    "Uso de marca en cada demostración técnica",
+                    "Presencia en uniforme oficial de Jorge",
+                    "Recomendación en clase activa de productos",
+                    "Acceso a la comunidad de técnicos egresados"
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-3 text-sm text-neutral-300">
+                      <ChevronRight size={18} className="text-green-500 shrink-0" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Cierre de Propuesta */}
+        <footer className="py-24 border-t border-neutral-900">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h2 className="text-5xl font-bold mb-8 italic uppercase tracking-tighter opacity-40">Propuesta comercial</h2>
+            <div className="bg-neutral-900/50 p-8 rounded-[2.5rem] border border-neutral-800 backdrop-blur-sm shadow-xl">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-500 font-bold mb-2">Representación Comercial</p>
+              <p className="text-xl text-white uppercase tracking-widest font-medium mb-8">
+                Yolber Montañez <span className="text-neutral-700 mx-2">|</span> Alianzas Estratégicas
+              </p>
+              
+              <a 
+                href="https://wa.me/584124402426" 
+                className="inline-flex items-center gap-3 text-white bg-green-600 hover:bg-green-700 px-8 py-4 rounded-xl font-bold transition-all transform hover:scale-105 shadow-lg shadow-green-900/20 uppercase tracking-widest text-sm"
+              >
+                <MessageCircle size={20} /> contactar
+              </a>
+            </div>
+            <div className="mt-16 flex flex-col items-center gap-4">
+              <p className="text-neutral-700 text-[9px] uppercase tracking-[0.5em] font-medium leading-relaxed text-center">
+                © 2026 YOLBER MONTAÑEZ | JORGE DOS SANTOS <br />
+                <span className="opacity-40 tracking-[0.3em]">PROGRAMA DE FORMACIÓN TÉCNICA MEDIA</span>
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  );
+};
+
+export default App;
